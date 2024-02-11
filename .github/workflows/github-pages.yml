@@ -19,17 +19,25 @@ jobs:
         node-version: 14
 
     - name: Install Dependencies
-      run: npm install
+      run: |
+        # Install Node.js dependencies
+        npm install
 
     - name: Build and Deploy
       run: |
+        # Build the project using npm script (adjust as per your project)
         npm run build
+
+        # Deploy to GitHub Pages using gh-pages
         npx gh-pages -d dist
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         personal_token: ${{ secrets.GITHUB_TOKEN }}
+        # Specify the external repository for deployment
         external_repository: your-username/GitHubRepoViewer
+        # Specify the branch to publish to on GitHub Pages
         publish_branch: gh-pages
+        # Specify the directory containing the build output
         publish_dir: dist
